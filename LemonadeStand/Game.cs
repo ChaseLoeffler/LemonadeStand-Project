@@ -17,5 +17,11 @@ namespace LemonadeStand
             
         }
         //Member Methods (CAN DO)
+        public void RunGame()
+        {
+
+        }
+
+
     }
 }
