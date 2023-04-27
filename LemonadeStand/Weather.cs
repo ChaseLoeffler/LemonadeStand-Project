@@ -14,7 +14,10 @@ namespace LemonadeStand
         private List<string> weatherConditions;
         public string predictedForecast;
         //Constructor
-
+        public Weather()
+        {
+            
+        }
         //Member Methods (CAN DO)
     }
 }

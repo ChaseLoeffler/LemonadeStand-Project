@@ -12,7 +12,10 @@ namespace LemonadeStand
         private List<Day> days;
         private int currentDay;
         //Constructor
-
+        public Game()
+        {
+            
+        }
         //Member Methods (CAN DO)
     }
 }

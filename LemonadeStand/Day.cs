@@ -11,7 +11,10 @@ namespace LemonadeStand
         public Weather weather;
         public List<Customer> customers;
         //Constructor
-
+        public Day()
+        {
+            
+        }
         //Member Methods (CAN DO)
     }
 }

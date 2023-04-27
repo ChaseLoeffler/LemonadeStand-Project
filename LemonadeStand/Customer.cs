@@ -10,7 +10,10 @@ namespace LemonadeStand
     {   // Member Variables (HAS A)
 
         //Constructor
-
+        public Customer()
+        {
+            
+        }
         //Member Methods (CAN DO)
     }
 }
