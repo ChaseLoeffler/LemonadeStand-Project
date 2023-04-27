@@ -15,11 +15,12 @@ namespace LemonadeStand
         public Recipe recipe;
 
         // constructor (SPAWNER)
-        public Player()
+        public Player(string name)
         {
             inventory = new Inventory();
             wallet = new Wallet();
             recipe = new Recipe();
+            this.name = name;
         }
 
         // member methods (CAN DO)
