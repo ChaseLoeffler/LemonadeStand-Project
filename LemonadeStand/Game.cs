@@ -18,9 +18,18 @@ namespace LemonadeStand
             
         }
         //Member Methods (CAN DO)
+
+
+
+
+
         public void RunGame()
         {
+            Player play = new Player("Player");
             UserInterface.DisplayIntroMessage();
+            
+            
+
         }
 
 
