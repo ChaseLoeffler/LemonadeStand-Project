@@ -12,7 +12,7 @@ namespace LemonadeStand
         public int numberOfLemons;
         public int numberOfSugarCubes;
         public int numberOfIceCubes;
-        public double price;
+        public double pricePerCup;
 
 
         // constructor (SPAWNER)
@@ -21,7 +21,7 @@ namespace LemonadeStand
             numberOfLemons = 2;
             numberOfSugarCubes = 4;
             numberOfIceCubes = 10;
-            price = 1;
+            pricePerCup = 1;
         }
 
         //Member Methods (CAN DO)
