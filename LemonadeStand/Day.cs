@@ -13,6 +13,7 @@ namespace LemonadeStand
         //Constructor
         public Day()
         {
+            weather = new Weather();
             
         }
         //Member Methods (CAN DO)

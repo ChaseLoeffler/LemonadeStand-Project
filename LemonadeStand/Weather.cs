@@ -13,7 +13,6 @@ namespace LemonadeStand
         public int temperature;
         private List<string> weatherConditions;
         private List<string> forcast;
-        public string predictedForecast;
         Random rand;
         //Constructor
         public Weather()
@@ -23,14 +22,33 @@ namespace LemonadeStand
             rand = new Random();
             condition = "";
             temperature = 0;
-            predictedForecast = "";
+            
         }
         //Member Methods (CAN DO)
 
         public void PredictWeather()
         {
-            predictedForecast = forcast[rand.Next(3)];
-            Console.WriteLine($"The weather looks like its going to be{predictedForecast}");
+            condition = forcast[rand.Next(3)];
+            Console.WriteLine($"The weather looks like its going to be{condition}");
+        }
+
+        public void ActualWeather()
+        {
+            if(condition == "Hot and Sunny")
+            {
+                temperature = 90;
+                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[0]}");
+            }
+            else if (condition == "Warm and Cloudy")
+            {
+                temperature = 65;
+                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[1]}");
+            }
+            else if (condition == "Cold and Rainy")
+            {
+                temperature = 40;
+                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[2]}");
+            }
         }
 
     }
