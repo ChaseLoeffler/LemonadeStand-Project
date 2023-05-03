@@ -17,5 +17,14 @@ namespace LemonadeStand
             customers = new List<Customer>();
         }
         //Member Methods (CAN DO)
+        public void DaysPossibleWeather()
+        {
+            weather.PredictWeather();
+        }
+
+        public void DaysActualWeather()
+        {
+            weather.ActualWeather();
+        }
     }
 }

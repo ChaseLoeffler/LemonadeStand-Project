@@ -15,17 +15,25 @@ namespace LemonadeStand
         //Constructor
         public Game()
         {
+            player = new Player("Player");
+            days = new List<Day>();
+            currentDay = 0;
             
         }
         //Member Methods (CAN DO)
 
+        public void StartDay()
+        {
+            days[currentDay].DaysPossibleWeather();
+            player.inventory.DisplayInventory();
+            player.DisplayCashAmount();
 
+        }
 
 
 
         public void RunGame()
         {
-            Player play = new Player("Player");
             UserInterface.DisplayIntroMessage();
             
             
