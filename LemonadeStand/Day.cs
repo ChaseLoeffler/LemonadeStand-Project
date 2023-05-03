@@ -19,11 +19,13 @@ namespace LemonadeStand
         //Member Methods (CAN DO)
         public void DaysPossibleWeather()
         {
+            Console.WriteLine();
             weather.PredictWeather();
         }
 
         public void DaysActualWeather()
         {
+            Console.WriteLine();
             weather.ActualWeather();
         }
     }

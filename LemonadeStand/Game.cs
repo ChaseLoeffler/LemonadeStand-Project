@@ -22,12 +22,23 @@ namespace LemonadeStand
         }
         //Member Methods (CAN DO)
 
+        public void CreateNewDay(int numOfDays)
+        {
+            for (int i = 0; i < numOfDays; i++)
+            {
+                Day day = new Day();
+                days.Add(day);
+            }
+        }
+
         public void StartDay()
         {
+            CreateNewDay(1);
             days[currentDay].DaysPossibleWeather();
             player.inventory.DisplayInventory();
             player.DisplayCashAmount();
-
+            Store.AskToStore();
+            
         }
 
 
@@ -35,6 +46,7 @@ namespace LemonadeStand
         public void RunGame()
         {
             UserInterface.DisplayIntroMessage();
+            StartDay();
             
             
 

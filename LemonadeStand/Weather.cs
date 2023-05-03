@@ -29,7 +29,7 @@ namespace LemonadeStand
         public void PredictWeather()
         {
             condition = forcast[rand.Next(3)];
-            Console.WriteLine($"The weather today looks like its going to be{condition}");
+            Console.WriteLine($"The weather today looks like its going to be {condition}");
         }
 
         public void ActualWeather()
