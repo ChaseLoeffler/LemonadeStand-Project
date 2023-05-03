@@ -36,18 +36,18 @@ namespace LemonadeStand
         {
             if(condition == "Hot and Sunny")
             {
-                temperature = 90;
-                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[0]}");
+                temperature = rand.Next(85, 95);
+                Console.WriteLine($"The weather was {weatherConditions[0]} and the temperature was {temperature} degrees fahrenheit.");
             }
             else if (condition == "Warm and Cloudy")
             {
-                temperature = 65;
-                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[1]}");
+                temperature = rand.Next(60,85);
+                Console.WriteLine($"The weather was {weatherConditions[1]} and the temperature was {temperature} degrees fahrenheit.");
             }
             else if (condition == "Cold and Rainy")
             {
-                temperature = 40;
-                Console.WriteLine($"The weather was {temperature} degrees and {weatherConditions[2]}");
+                temperature = rand.Next(40,55);
+                Console.WriteLine($"The weather was {weatherConditions[2]} and the temperature was {temperature} degrees fahrenheit.");
             }
         }
 
