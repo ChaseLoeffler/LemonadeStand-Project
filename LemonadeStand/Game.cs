@@ -12,13 +12,14 @@ namespace LemonadeStand
         private Player player;
         private List<Day> days;
         private int currentDay;
+        private Store store;
         //Constructor
         public Game()
         {
             player = new Player("Player");
             days = new List<Day>();
             currentDay = 0;
-            
+            store = new Store();
         }
         //Member Methods (CAN DO)
 
@@ -37,8 +38,28 @@ namespace LemonadeStand
             days[currentDay].DaysPossibleWeather();
             player.inventory.DisplayInventory();
             player.DisplayCashAmount();
-            Store.AskToStore();
-            
+            string answer = Store.AskToStore();
+            while (Store.AskToStore() == answer)
+            {
+                if (answer == "Y")
+                {
+                    Console.WriteLine("Great.");
+                    store.SellLemons(player);
+                    store.SellCups(player);
+                    store.SellIceCubes(player);
+                    store.SellSugarCubes(player);
+                }
+                if (answer == "N")
+                {
+                    Console.WriteLine("Okay, Have a nice day.");
+                }
+                else
+                {
+                    Console.WriteLine("Please enter only capital Y or capital N when responding");
+                    
+                }
+                
+            }
         }
 
 
