@@ -14,7 +14,7 @@ namespace LemonadeStand
         public Day()
         {
             weather = new Weather();
-            
+            customers = new List<Customer>();
         }
         //Member Methods (CAN DO)
     }

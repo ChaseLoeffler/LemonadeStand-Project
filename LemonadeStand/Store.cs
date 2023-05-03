@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,6 +78,13 @@ namespace LemonadeStand
         private void PerformTransaction(Wallet wallet, double transactionAmount)
         {
             wallet.PayMoneyForItems(transactionAmount);
+        }
+
+        public static string AskToStore()
+        {
+            Console.WriteLine("Would you like to purchase any items today?\n (Y for yes N for no)");
+            string userInput = Console.ReadLine();
+            return userInput;
         }
     }
 }
