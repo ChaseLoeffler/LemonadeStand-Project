@@ -35,12 +35,14 @@ namespace LemonadeStand
         public void StartDay()
         {
             CreateNewDay(1);
+            Console.WriteLine($"Day: {currentDay+1}");
             days[currentDay].DaysPossibleWeather();
             player.inventory.DisplayInventory();
             player.DisplayCashAmount();
-            string answer = Store.AskToStore();
-            while (Store.AskToStore() == answer)
+            string answer = "a";
+            while (answer != "")
             {
+                answer = Store.AskToStore();
                 if (answer == "Y")
                 {
                     Console.WriteLine("Great.");
@@ -48,16 +50,18 @@ namespace LemonadeStand
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
+                    break;
                 }
                 if (answer == "N")
                 {
                     Console.WriteLine("Okay, Have a nice day.");
+                    break;
                 }
                 else
                 {
-                    Console.WriteLine("Please enter only capital Y or capital N when responding");
-                    
+                    continue;
                 }
+               
                 
             }
         }

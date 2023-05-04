@@ -82,7 +82,7 @@ namespace LemonadeStand
 
         public static string AskToStore()
         {
-            Console.WriteLine("Would you like to purchase any items today?\n (Y for yes N for no)");
+            Console.WriteLine("Would you like to purchase any items today?\n (Capital Y for yes, Capital N for no)");
             string userInput = Console.ReadLine();
             return userInput;
         }
