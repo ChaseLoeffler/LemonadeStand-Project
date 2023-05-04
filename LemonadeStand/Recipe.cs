@@ -33,10 +33,10 @@ namespace LemonadeStand
         public void ChangeRecipe()
         {
             Console.WriteLine("Do you want to edit your recipe? (Capital Y for yes Capital N for no.");
-            string answer = "a";
-            while (answer !="")
+            bool loop = true;
+            while (loop)
             {
-                answer = Console.ReadLine();
+               string answer = Console.ReadLine();
                 if (answer == "Y")
                 {
                     Console.WriteLine("How many Lemons do you want to use?");
@@ -53,12 +53,12 @@ namespace LemonadeStand
                     string userInput2 = Console.ReadLine();
                     int userInpuInt2 = Convert.ToInt32(userInput2);
                     numberOfIceCubes = userInpuInt2;
-                    break;
+                    loop = false;
                 }
 
                 if (answer == "N")
                 {
-                    break;
+                    loop = false;
                 }
 
                 else
