@@ -32,6 +32,27 @@ namespace LemonadeStand
             }
         }
 
+        public void SubtractRecipeAmountFromInventory(int pitchersMade)
+        {
+            if (pitchersMade > 0)
+            {
+                for (int i = 0; i < player.recipe.numberOfLemons; i++)
+                {
+                    player.inventory.lemons.RemoveAt(0);
+                }
+
+                for (int i = 0; i < player.recipe.numberOfIceCubes; i++)
+                {
+                    player.inventory.iceCubes.RemoveAt(0);
+                }
+
+                for (int i = 0; i < player.recipe.numberOfSugarCubes; i++)
+                {
+                    player.inventory.sugarCubes.RemoveAt(0);
+                }
+            }
+        }
+
         public void StartDay()
         {
             CreateNewDay(1);
@@ -39,8 +60,8 @@ namespace LemonadeStand
             days[currentDay].DaysPossibleWeather();
             player.inventory.DisplayInventory();
             player.DisplayCashAmount();
-            bool loop = true;
-            while (loop)
+            bool loop1 = true;
+            while (loop1)
             {
                 string answer = Store.AskToStore();
                 if (answer == "Y")
@@ -50,12 +71,12 @@ namespace LemonadeStand
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
-                    loop = false;
+                    loop1 = false;
                 }
                 if (answer == "N")
                 {
                     Console.WriteLine("Okay, Have a nice day.\n");
-                    loop = false;
+                    loop1 = false;
                 }
                 else
                 {
@@ -65,9 +86,25 @@ namespace LemonadeStand
                
                 
             }
+
             player.recipe.DisplayRecipe();
             player.recipe.ChangeRecipe();
-            int pitcherNum = UserInterface.GetNumberOfPitchers();
+
+            bool loop2 = true;
+            while (loop2)
+            {
+                int pitcherNum = UserInterface.GetNumberOfPitchers();
+                if (player.recipe.numberOfLemons > player.inventory.lemons.Count || player.recipe.numberOfIceCubes > player.inventory.iceCubes.Count || player.recipe.numberOfSugarCubes > player.inventory.sugarCubes.Count)
+                {
+                    Console.WriteLine("You do not have enough ingredients to make this number of pitchers.");
+                }
+                else
+                {
+                    SubtractRecipeAmountFromInventory(pitcherNum);
+                }
+
+            }
+
             player.recipe.ChangePricePerCup();
 
         }

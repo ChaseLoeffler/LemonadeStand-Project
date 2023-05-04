@@ -53,6 +53,7 @@ namespace LemonadeStand
                     string userInput2 = Console.ReadLine();
                     int userInpuInt2 = Convert.ToInt32(userInput2);
                     numberOfIceCubes = userInpuInt2;
+                    
                     loop = false;
                 }
 
@@ -61,7 +62,7 @@ namespace LemonadeStand
                     loop = false;
                 }
 
-                else
+                if (answer != "N" && answer != "Y")
                 {
                     Console.WriteLine("Invaid response. Please try again.");
                     continue;
