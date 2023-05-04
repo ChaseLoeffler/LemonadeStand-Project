@@ -52,6 +52,8 @@ namespace LemonadeStand
                     Console.WriteLine("How many Ice cubes do you want to use?");
                     string userInput2 = Console.ReadLine();
                     int userInpuInt2 = Convert.ToInt32(userInput2);
+                    numberOfIceCubes = userInpuInt2;
+                    break;
                 }
 
                 if (answer == "N")

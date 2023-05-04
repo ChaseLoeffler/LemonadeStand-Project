@@ -64,6 +64,9 @@ namespace LemonadeStand
                
                 
             }
+            player.recipe.DisplayRecipe();
+            player.recipe.ChangeRecipe();
+
         }
 
 
