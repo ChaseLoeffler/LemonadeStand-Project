@@ -59,6 +59,7 @@ namespace LemonadeStand
                 }
                 else
                 {
+                    Console.WriteLine("Invaild rsponse. Please try again.");
                     continue;
                 }
                
@@ -66,6 +67,7 @@ namespace LemonadeStand
             }
             player.recipe.DisplayRecipe();
             player.recipe.ChangeRecipe();
+            player.recipe.ChangePricePerCup();
 
         }
 
