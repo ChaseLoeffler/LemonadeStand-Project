@@ -13,7 +13,7 @@ namespace LemonadeStand
         public int temperature;
         private List<string> weatherConditions;
         private List<string> forcast;
-        Random rand;
+        public Random rand;
         //Constructor
         public Weather()
         {
