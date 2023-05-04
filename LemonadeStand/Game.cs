@@ -34,8 +34,13 @@ namespace LemonadeStand
 
         public void SubtractRecipeAmountFromInventory(int pitchersMade)
         {
-            if (pitchersMade > 0)
+            while (pitchersMade > 0)
             {
+                if (player.inventory.lemons.Count <= 0 || player.inventory.sugarCubes.Count <= 0 || player.inventory.iceCubes.Count <= 0)
+                {
+                    Console.WriteLine("Can not use more ingredients than you have");
+                    break;
+                }
                 for (int i = 0; i < player.recipe.numberOfLemons; i++)
                 {
                     player.inventory.lemons.RemoveAt(0);
@@ -52,16 +57,10 @@ namespace LemonadeStand
                 }
             }
         }
-
-        public void StartDay()
+        public void StartStore()
         {
-            CreateNewDay(1);
-            Console.WriteLine($"Day: {currentDay+1}");
-            days[currentDay].DaysPossibleWeather();
-            player.inventory.DisplayInventory();
-            player.DisplayCashAmount();
-            bool loop1 = true;
-            while (loop1)
+            bool loop = true;
+            while (loop)
             {
                 string answer = Store.AskToStore();
                 if (answer == "Y")
@@ -71,36 +70,46 @@ namespace LemonadeStand
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
-                    loop1 = false;
+                    loop = false;
                 }
                 if (answer == "N")
                 {
                     Console.WriteLine("Okay, Have a nice day.\n");
-                    loop1 = false;
+                    loop = false;
                 }
                 else
                 {
                     Console.WriteLine("Invaild rsponse. Please try again.");
                     continue;
                 }
-               
-                
-            }
 
-            player.recipe.DisplayRecipe();
-            player.recipe.ChangeRecipe();
+
+            }
+        }
+
+        public void StartDay()
+        {
+            CreateNewDay(1);
+            Console.WriteLine($"Day: {currentDay+1}");
+            days[currentDay].DaysPossibleWeather();
+            player.inventory.DisplayInventory();
+            player.DisplayCashAmount();
+            StartStore();
 
             bool loop2 = true;
             while (loop2)
             {
-                int pitcherNum = UserInterface.GetNumberOfPitchers();
+                player.recipe.DisplayRecipe();
+                player.recipe.ChangeRecipe();
+
                 if (player.recipe.numberOfLemons > player.inventory.lemons.Count || player.recipe.numberOfIceCubes > player.inventory.iceCubes.Count || player.recipe.numberOfSugarCubes > player.inventory.sugarCubes.Count)
                 {
-                    Console.WriteLine("You do not have enough ingredients to make this number of pitchers.");
+                    Console.WriteLine("You do not have enough ingredients for you to use this recipe. (Consider editing your recipe)");
+                    continue;
                 }
                 else
                 {
-                    SubtractRecipeAmountFromInventory(pitcherNum);
+                    loop2 = false;
                 }
 
             }
