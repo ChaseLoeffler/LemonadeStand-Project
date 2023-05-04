@@ -67,6 +67,7 @@ namespace LemonadeStand
             }
             player.recipe.DisplayRecipe();
             player.recipe.ChangeRecipe();
+            int pitcherNum = UserInterface.GetNumberOfPitchers();
             player.recipe.ChangePricePerCup();
 
         }
