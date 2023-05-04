@@ -28,5 +28,14 @@ namespace LemonadeStand
             Console.WriteLine();
             weather.ActualWeather();
         }
+
+        public void CreateCustomers(int numOfCustomers)
+        {
+            for (int i = 0; i < numOfCustomers; i++)
+            {
+                Customer customer = new Customer();
+                customers.Add(customer);
+            }
+        }
     }
 }
