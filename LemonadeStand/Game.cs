@@ -32,15 +32,29 @@ namespace LemonadeStand
             }
         }
 
+        public void MakingPitchers()
+        {
+            // was trying to stop the possibilty of making to many pitchers.
+            bool loop = true;
+            while (loop)
+            {
+                int possiblelemons = (player.inventory.lemons.Count / player.recipe.numberOfLemons);
+                int possibleIceCubes = (player.inventory.iceCubes.Count / player.recipe.numberOfIceCubes);
+                int possibleSugarCubes = (player.inventory.sugarCubes.Count / player.recipe.numberOfSugarCubes);
+                int amountOfPossiblePitchers = ();
+                int amountOfPitchers = UserInterface.GetNumberOfPitchers();
+                if (amountOfPitchers > amountOfPossiblePitchers)
+                {
+
+                }
+                
+            }
+        }
+
         public void SubtractRecipeAmountFromInventory(int pitchersMade)
         {
             while (pitchersMade > 0)
             {
-                if (player.inventory.lemons.Count <= 0 || player.inventory.sugarCubes.Count <= 0 || player.inventory.iceCubes.Count <= 0)
-                {
-                    Console.WriteLine("Can not use more ingredients than you have");
-                    break;
-                }
                 for (int i = 0; i < player.recipe.numberOfLemons; i++)
                 {
                     player.inventory.lemons.RemoveAt(0);
