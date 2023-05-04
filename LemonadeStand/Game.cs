@@ -87,17 +87,10 @@ namespace LemonadeStand
             }
         }
 
-        public void StartDay()
+        public void RecipeEditor()
         {
-            CreateNewDay(1);
-            Console.WriteLine($"Day: {currentDay+1}");
-            days[currentDay].DaysPossibleWeather();
-            player.inventory.DisplayInventory();
-            player.DisplayCashAmount();
-            StartStore();
-
-            bool loop2 = true;
-            while (loop2)
+            bool loop = true;
+            while (loop)
             {
                 player.recipe.DisplayRecipe();
                 player.recipe.ChangeRecipe();
@@ -109,10 +102,27 @@ namespace LemonadeStand
                 }
                 else
                 {
-                    loop2 = false;
+                    loop = false;
                 }
 
             }
+        }
+
+        public void StartDay()
+        {
+            CreateNewDay(1);
+
+            Console.WriteLine($"Day: {currentDay+1}");
+
+            days[currentDay].DaysPossibleWeather();
+
+            player.inventory.DisplayInventory();
+
+            player.DisplayCashAmount();
+
+            StartStore();
+
+            RecipeEditor();
 
             player.recipe.ChangePricePerCup();
 
