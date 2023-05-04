@@ -26,7 +26,7 @@ namespace LemonadeStand
         // member methods (CAN DO)
         public void DisplayCashAmount()
         {
-            Console.WriteLine($"You currently have {this.wallet.Money} of spending money.");
+            Console.WriteLine($"You currently have {this.wallet.Money} dollars in your wallet.");
         }
     }
 }
