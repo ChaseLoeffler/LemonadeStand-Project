@@ -39,10 +39,10 @@ namespace LemonadeStand
             days[currentDay].DaysPossibleWeather();
             player.inventory.DisplayInventory();
             player.DisplayCashAmount();
-            string answer = "a";
-            while (answer != "")
+            bool loop = true;
+            while (loop)
             {
-                answer = Store.AskToStore();
+                string answer = Store.AskToStore();
                 if (answer == "Y")
                 {
                     Console.WriteLine("Great.");
@@ -50,12 +50,12 @@ namespace LemonadeStand
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
-                    break;
+                    loop = false;
                 }
                 if (answer == "N")
                 {
-                    Console.WriteLine("Okay, Have a nice day.");
-                    break;
+                    Console.WriteLine("Okay, Have a nice day.\n");
+                    loop = false;
                 }
                 else
                 {
