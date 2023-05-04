@@ -63,11 +63,20 @@ namespace LemonadeStand
 
                 else
                 {
-                    Console.WriteLine("Invaid response.");
+                    Console.WriteLine("Invaid response. Please try again.");
                     continue;
                 }
 
             }
+        }
+
+
+        public void ChangePricePerCup()
+        {
+            Console.WriteLine("How much do you want to charge per cup of Lemonade?");
+            string userInput = Console.ReadLine();
+            double userInputdouble = Convert.ToDouble(userInput);
+            pricePerCup = userInputdouble;
         }
 
     }
