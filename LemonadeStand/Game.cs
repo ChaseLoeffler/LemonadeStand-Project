@@ -34,7 +34,6 @@ namespace LemonadeStand
 
         public void MakingPitchers()
         {
-            // was trying to stop the possibilty of making to many pitchers.
             bool loop = true;
             while (loop)
             {
