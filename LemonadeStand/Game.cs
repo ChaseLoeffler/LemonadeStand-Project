@@ -75,6 +75,7 @@ namespace LemonadeStand
                 {
                     player.inventory.sugarCubes.RemoveAt(0);
                 }
+                --pitchersMade;
             }
         }
         public void StartStore()
