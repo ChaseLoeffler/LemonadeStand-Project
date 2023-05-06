@@ -41,11 +41,17 @@ namespace LemonadeStand
                 int possiblelemons = (player.inventory.lemons.Count / player.recipe.numberOfLemons);
                 int possibleIceCubes = (player.inventory.iceCubes.Count / player.recipe.numberOfIceCubes);
                 int possibleSugarCubes = (player.inventory.sugarCubes.Count / player.recipe.numberOfSugarCubes);
-                int amountOfPossiblePitchers = ();
+                int amountOfPossiblePitchers = Math.Min(possibleSugarCubes,Math.Min(possiblelemons,possibleIceCubes));
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
                 if (amountOfPitchers > amountOfPossiblePitchers)
                 {
-
+                    Console.WriteLine($"You do not have enough ingredients to make that many pitchers.\nYou have Enough to make a total of {amountOfPossiblePitchers} Pitchers.");
+                    continue;
+                }
+                else
+                {
+                    SubtractRecipeAmountFromInventory(amountOfPitchers);
+                    loop = false;
                 }
                 
             }
@@ -137,6 +143,8 @@ namespace LemonadeStand
             StartStore();
 
             RecipeEditor();
+
+            MakingPitchers();
 
             player.recipe.ChangePricePerCup();
 
