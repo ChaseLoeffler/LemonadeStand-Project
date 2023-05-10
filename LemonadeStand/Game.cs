@@ -13,12 +13,14 @@ namespace LemonadeStand
         private List<Day> days;
         private int currentDay;
         private Store store;
+        private double totalProfitOrLoss;
         //Constructor
         public Game()
         {
             player = new Player("Player");
             days = new List<Day>();
             currentDay = 0;
+            totalProfitOrLoss = 0;
             store = new Store();
         }
         //Member Methods (CAN DO)
@@ -30,6 +32,14 @@ namespace LemonadeStand
                 Day day = new Day();
                 days.Add(day);
             }
+        }
+
+        public void DisplayProfitOrLoss()
+        {
+            double profitOrLoss = UserInterface.ProfitOrLossOfDay(player.wallet.Money);
+            Console.WriteLine($"Todays profit or loss is {profitOrLoss}\n");
+            totalProfitOrLoss += profitOrLoss;
+            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss}\n");
         }
 
         public void MakingPitchers()

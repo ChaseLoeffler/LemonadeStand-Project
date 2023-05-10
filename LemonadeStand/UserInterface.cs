@@ -56,7 +56,7 @@ namespace LemonadeStand
             }
             if (currentMoney < 20.00)
             {
-                double loss = 20.00 - currentMoney;
+                double loss = currentMoney - 20.00;
                 return loss;
             }
             else
@@ -66,6 +66,5 @@ namespace LemonadeStand
             }
 
         }
-
     }
 }
