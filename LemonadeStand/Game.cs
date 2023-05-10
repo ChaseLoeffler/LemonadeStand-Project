@@ -33,7 +33,7 @@ namespace LemonadeStand
             {
                 do
                 {
-                    Console.WriteLine("A customer is walking by.");
+                    Console.WriteLine("A customer is walking by.\n");
                     bool wants = customer.WantsLemonade(days[currentDay].weather.condition);
                     if (wants == true)
                     {
@@ -44,10 +44,15 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("The customer did not buy your Lemonade.\n");
                                 break;
                             }
                         }
@@ -57,10 +62,15 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("The customer did not buy your Lemonade.\n");
                                 break;
                             }
                         }
@@ -70,19 +80,29 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
                                 break;
                             }
+                            else
+                            {
+                                Console.WriteLine("The customer did not buy your Lemonade.\n");
+                                break;
+                            }
                         }
 
+                    }
+                    else
+                    {
+                        Console.WriteLine("The customer did not want lemonade\n");
+                        break;
                     }
                 } while (numberOfCups > 0);
                 if (numberOfCups == 0)
                 {
-                    Console.WriteLine("You have sold out of Lemonade. You pack up your things for the day and leave.");
+                    Console.WriteLine("You have sold out of Lemonade. You pack up your things for the day and leave.\n");
                     break;
                 }
 
@@ -101,9 +121,17 @@ namespace LemonadeStand
         public void DisplayProfitOrLoss()
         {
             double profitOrLoss = UserInterface.ProfitOrLossOfDay(player.wallet.Money);
-            Console.WriteLine($"Todays profit or loss is {profitOrLoss}\n");
+            Console.WriteLine($"Todays profit or loss is {profitOrLoss} dollars.\n");
             totalProfitOrLoss += profitOrLoss;
-            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss}\n");
+            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss} dollars.\n");
+        }
+
+        public void EndGamesProfitOrLoss()
+        {
+            Console.WriteLine("The Game is Over!\n");
+            double profitOrLoss = UserInterface.ProfitOrLossOfDay(player.wallet.Money);
+            totalProfitOrLoss += profitOrLoss;
+            Console.WriteLine($"Total profit or loss of the whole game was {totalProfitOrLoss} dollars.\n");
         }
 
         public int MakingPitchers(int pitchers)
@@ -171,12 +199,12 @@ namespace LemonadeStand
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
-                    loop = false;
+                    break;
                 }
                 if (answer == "N")
                 {
                     Console.WriteLine("Okay, Have a nice day.\n");
-                    loop = false;
+                    break;
                 }
                 else
                 {
@@ -213,11 +241,11 @@ namespace LemonadeStand
         {
             if (days[currentDay].weather.condition == "Hot and Sunny.")
             {
-                days[currentDay].CreateCustomers(rand.Next(30,50));
+                days[currentDay].CreateCustomers(rand.Next(30,35));
             }
             if (days[currentDay].weather.condition == "Warm and Cloudy")
             {
-                days[currentDay].CreateCustomers(rand.Next(20,30));
+                days[currentDay].CreateCustomers(rand.Next(15,30));
             }
             if (days[currentDay].weather.condition == "Cold and Rainy")
             {
@@ -249,6 +277,8 @@ namespace LemonadeStand
 
             CustomersWalkingBy(player.recipe.pricePerCup,pitchers*=8);
 
+            Console.WriteLine("The Day is Finsihed!\n");
+
             DisplayProfitOrLoss();
 
             ++currentDay;
@@ -260,9 +290,18 @@ namespace LemonadeStand
         public void RunGame()
         {
             UserInterface.DisplayIntroMessage();
-            StartDay();
-            
-            
+            while (currentDay < 7)
+            {
+                StartDay();
+                if (this.player.wallet.Money == 0)
+                {
+                    Console.WriteLine("You Have gone Broke!");
+                    break;
+                }
+            }
+            EndGamesProfitOrLoss();
+
+            Console.WriteLine("Thank you for Playing!");
 
         }
 

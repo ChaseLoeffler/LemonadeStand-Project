@@ -22,9 +22,9 @@ namespace LemonadeStand
         {
             if (conditon == "Hot and Sunny")
             {
-                int randomNum = (int)rand.NextInt64(1,2);
+                int randomNum = (int)rand.Next(1,4);
 
-                if (randomNum == 1)
+                if (randomNum == 1 || randomNum == 2)
                 {
                      return true;
                 }
@@ -35,7 +35,7 @@ namespace LemonadeStand
             }
             if (conditon == "Warm and Cloudy")
             {
-                int randomNum = (int)rand.NextInt64(1,3);
+                int randomNum = (int)rand.NextInt64(1,4);
 
                 if (randomNum == 1)
                 {
