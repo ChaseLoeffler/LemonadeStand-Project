@@ -11,13 +11,11 @@ namespace LemonadeStand
     {   // Member Variables (HAS A)
         public Random rand;
         public Wallet wallet;
-        public int priceOfObject;
         //Constructor
         public Customer()
         {
             wallet = new Wallet();
             rand = new Random();
-            priceOfObject = 0;
         }
         //Member Methods (CAN DO)
         public bool WantsLemonade(string conditon)
@@ -67,7 +65,7 @@ namespace LemonadeStand
             }
         }
 
-        public bool ChecksPrice(int maxWillingToPay)
+        public bool ChecksPrice(int priceOfObject, int maxWillingToPay)
         {
             if (priceOfObject <= maxWillingToPay)
             {
