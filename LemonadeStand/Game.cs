@@ -74,6 +74,10 @@ namespace LemonadeStand
                 {
                     player.inventory.sugarCubes.RemoveAt(0);
                 }
+                for (int i = 0; i < 8; i++)
+                {
+                    player.inventory.cups.RemoveAt(0);
+                }
                 --pitchersMade;
             }
         }
@@ -132,7 +136,7 @@ namespace LemonadeStand
         {
             CreateNewDay(1);
 
-            Console.WriteLine($"Day: {currentDay+1}");
+            Console.WriteLine($"Day: {currentDay + 1}");
 
             days[currentDay].DaysPossibleWeather();
 
@@ -147,6 +151,8 @@ namespace LemonadeStand
             MakingPitchers();
 
             player.recipe.ChangePricePerCup();
+
+            ++currentDay;
 
         }
 
