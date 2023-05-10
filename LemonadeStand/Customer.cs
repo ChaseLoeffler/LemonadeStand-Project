@@ -65,7 +65,7 @@ namespace LemonadeStand
             }
         }
 
-        public bool ChecksPrice(int priceOfObject, int maxWillingToPay)
+        public bool ChecksPrice(double priceOfObject, int maxWillingToPay)
         {
             if (priceOfObject <= maxWillingToPay)
             {
@@ -78,7 +78,7 @@ namespace LemonadeStand
 
         }
 
-        public void BuysLemonade(int priceOfObject)
+        public void BuysLemonade(double priceOfObject)
         {
             this.wallet.PayMoneyForItems(priceOfObject);
         }
