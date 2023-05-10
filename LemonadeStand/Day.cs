@@ -59,6 +59,8 @@ namespace LemonadeStand
                             {
                                 Console.WriteLine("A customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
+                                --numberOfCups;
+                                break;
                             }
                         }
                         if (weather.condition == "Warm and Cloudy")
@@ -69,6 +71,8 @@ namespace LemonadeStand
                             {
                                 Console.WriteLine("A customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
+                                --numberOfCups;
+                                break;
                             }
                         }
                         if (weather.condition == "Cold and Rainy")
@@ -79,11 +83,12 @@ namespace LemonadeStand
                             {
                                 Console.WriteLine("A customer perchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
+                                --numberOfCups;
+                                break;
                             }
                         }
 
                     }
-                    --numberOfCups;
                 } while (numberOfCups > 0);
                 if (numberOfCups == 0)
                 {
