@@ -45,7 +45,7 @@ namespace LemonadeStand
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
                 if (amountOfPitchers > amountOfPossiblePitchers)
                 {
-                    Console.WriteLine($"You do not have enough ingredients to make that many pitchers.\nYou have Enough to make a total of {amountOfPossiblePitchers} Pitchers.");
+                    Console.WriteLine($"You do not have enough materials (Cups,Lemons,Sugar Cubes, etc..) to make that many pitchers.\nYou have Enough to make a total of {amountOfPossiblePitchers} Pitchers.\n");
                     continue;
                 }
                 else
