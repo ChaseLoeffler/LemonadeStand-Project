@@ -67,11 +67,15 @@ namespace LemonadeStand
             }
         }
 
-        public void ChecksPrice(int maxWillingToPay)
+        public bool ChecksPrice(int maxWillingToPay)
         {
             if (priceOfObject <= maxWillingToPay)
             {
-                BuysLemonade(priceOfObject);
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }
