@@ -14,6 +14,7 @@ namespace LemonadeStand
         private int currentDay;
         private Store store;
         private double totalProfitOrLoss;
+        public Random rand;
         //Constructor
         public Game()
         {
@@ -22,6 +23,7 @@ namespace LemonadeStand
             currentDay = 0;
             totalProfitOrLoss = 0;
             store = new Store();
+            rand = new Random();
         }
         //Member Methods (CAN DO)
 
@@ -143,6 +145,22 @@ namespace LemonadeStand
             }
         }
 
+        public void CustomersOfTheDay()
+        {
+            if (days[currentDay].weather.condition == "Hot and Sunny.")
+            {
+                days[currentDay].CreateCustomers(rand.Next(30,50));
+            }
+            if (days[currentDay].weather.condition == "Warm and Cloudy")
+            {
+                days[currentDay].CreateCustomers(rand.Next(20,30));
+            }
+            if (days[currentDay].weather.condition == "Cold and Rainy")
+            {
+                days[currentDay].CreateCustomers(rand.Next(5,15));
+            }
+        }
+
         public void StartDay()
         {
             CreateNewDay(1);
@@ -162,6 +180,10 @@ namespace LemonadeStand
             MakingPitchers();
 
             player.recipe.ChangePricePerCup();
+
+            CustomersOfTheDay();
+
+            DisplayProfitOrLoss();
 
             ++currentDay;
 
