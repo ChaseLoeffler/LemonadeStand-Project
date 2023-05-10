@@ -27,6 +27,68 @@ namespace LemonadeStand
         }
         //Member Methods (CAN DO)
 
+        public void CustomersWalkingBy(double priceOfObject, int numberOfCups)
+        {
+            foreach (Customer customer in days[currentDay].customers)
+            {
+                do
+                {
+                    Console.WriteLine("A customer is walking by.");
+                    bool wants = customer.WantsLemonade(days[currentDay].weather.condition);
+                    if (wants == true)
+                    {
+                        int maxWillingToPay = 0;
+                        if (days[currentDay].weather.condition == "Hot and Sunny")
+                        {
+                            maxWillingToPay = rand.Next(5, 11);
+                            bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
+                            if (okayWithPaying == true)
+                            {
+                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                customer.BuysLemonade(priceOfObject);
+                                player.wallet.AcceptMoney(priceOfObject);
+                                --numberOfCups;
+                                break;
+                            }
+                        }
+                        if (days[currentDay].weather.condition == "Warm and Cloudy")
+                        {
+                            maxWillingToPay = rand.Next(3, 6);
+                            bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
+                            if (okayWithPaying == true)
+                            {
+                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                customer.BuysLemonade(priceOfObject);
+                                player.wallet.AcceptMoney(priceOfObject);
+                                --numberOfCups;
+                                break;
+                            }
+                        }
+                        if (days[currentDay].weather.condition == "Cold and Rainy")
+                        {
+                            maxWillingToPay = rand.Next(0, 2);
+                            bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
+                            if (okayWithPaying == true)
+                            {
+                                Console.WriteLine("A customer perchased Lemonade.\n");
+                                customer.BuysLemonade(priceOfObject);
+                                player.wallet.AcceptMoney(priceOfObject);
+                                --numberOfCups;
+                                break;
+                            }
+                        }
+
+                    }
+                } while (numberOfCups > 0);
+                if (numberOfCups == 0)
+                {
+                    Console.WriteLine("You have sold out of Lemonade. You pack up your things for the day and leave.");
+                    break;
+                }
+
+            }
+        }
+
         public void CreateNewDay(int numOfDays)
         {
             for (int i = 0; i < numOfDays; i++)
@@ -44,7 +106,7 @@ namespace LemonadeStand
             Console.WriteLine($"Total profit or loss is {totalProfitOrLoss}\n");
         }
 
-        public void MakingPitchers()
+        public int MakingPitchers(int pitchers)
         {
             bool loop = true;
             while (loop)
@@ -54,6 +116,7 @@ namespace LemonadeStand
                 int possibleSugarCubes = (player.inventory.sugarCubes.Count / player.recipe.numberOfSugarCubes);
                 int possibleCups = (player.inventory.cups.Count / 8);
                 int amountOfPossiblePitchers = Math.Min(Math.Min(possibleSugarCubes,possibleCups),Math.Min(possiblelemons,possibleIceCubes));
+                pitchers = amountOfPossiblePitchers;
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
                 if (amountOfPitchers > amountOfPossiblePitchers)
                 {
@@ -65,8 +128,8 @@ namespace LemonadeStand
                     SubtractRecipeAmountFromInventory(amountOfPitchers);
                     loop = false;
                 }
-                
             }
+            return pitchers;
         }
 
         public void SubtractRecipeAmountFromInventory(int pitchersMade)
@@ -94,6 +157,7 @@ namespace LemonadeStand
                 --pitchersMade;
             }
         }
+
         public void StartStore()
         {
             bool loop = true;
@@ -177,11 +241,13 @@ namespace LemonadeStand
 
             RecipeEditor();
 
-            MakingPitchers();
+            int pitchers = MakingPitchers(0);
 
             player.recipe.ChangePricePerCup();
 
             CustomersOfTheDay();
+
+            CustomersWalkingBy(player.recipe.pricePerCup,pitchers*=8);
 
             DisplayProfitOrLoss();
 
