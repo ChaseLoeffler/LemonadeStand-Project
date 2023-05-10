@@ -20,19 +20,63 @@ namespace LemonadeStand
             priceOfObject = 0;
         }
         //Member Methods (CAN DO)
-        public bool WantsLemonade()
+        public bool WantsLemonade(string conditon)
         {
-            int randomNum = (int)rand.NextInt64(10);
-            if (randomNum <= 5)
+            if (conditon == "Hot and Sunny")
             {
-               return true;
+                int randomNum = (int)rand.NextInt64(1,2);
+
+                if (randomNum == 1)
+                {
+                     return true;
+                }
+                else
+                {
+                     return false;
+                }
+            }
+            if (conditon == "Warm and Cloudy")
+            {
+                int randomNum = (int)rand.NextInt64(1,3);
+
+                if (randomNum == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (conditon == "Cold and Rainy")
+            {
+                int randomNum = (int)rand.NextInt64(1,5);
+
+                if (randomNum == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
         }
-        public void BuysLemonade()
+
+        public void ChecksPrice(int maxWillingToPay)
+        {
+            if (priceOfObject <= maxWillingToPay)
+            {
+                BuysLemonade(priceOfObject);
+            }
+
+        }
+
+        public void BuysLemonade(int priceOfObject)
         {
             this.wallet.PayMoneyForItems(priceOfObject);
         }
