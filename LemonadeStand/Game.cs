@@ -40,7 +40,8 @@ namespace LemonadeStand
                 int possiblelemons = (player.inventory.lemons.Count / player.recipe.numberOfLemons);
                 int possibleIceCubes = (player.inventory.iceCubes.Count / player.recipe.numberOfIceCubes);
                 int possibleSugarCubes = (player.inventory.sugarCubes.Count / player.recipe.numberOfSugarCubes);
-                int amountOfPossiblePitchers = Math.Min(possibleSugarCubes,Math.Min(possiblelemons,possibleIceCubes));
+                int possibleCups = (player.inventory.cups.Count / 8);
+                int amountOfPossiblePitchers = Math.Min(Math.Min(possibleSugarCubes,possibleCups),Math.Min(possiblelemons,possibleIceCubes));
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
                 if (amountOfPitchers > amountOfPossiblePitchers)
                 {
