@@ -32,26 +32,6 @@ namespace LemonadeStand
             }
         }
 
-        public double ProfitOrLossOfDay(double currentMoney)
-        {
-            if(currentMoney > 20.00)
-            {
-                double profit = currentMoney - 20.00;
-                return profit;
-            }
-            if (currentMoney < 20.00)
-            {
-                double loss = 20.00 - currentMoney;
-                return loss;
-            }
-            else
-            {
-                double noLossOrProfit = 0;
-                return noLossOrProfit;
-            }
-            
-        }
-
         public void MakingPitchers()
         {
             bool loop = true;
