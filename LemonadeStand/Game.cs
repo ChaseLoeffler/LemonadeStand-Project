@@ -37,7 +37,7 @@ namespace LemonadeStand
                     bool wants = customer.WantsLemonade(days[currentDay].weather.condition);
                     if (wants == true)
                     {
-                        int maxWillingToPay = 0;
+                        int maxWillingToPay;
                         if (days[currentDay].weather.condition == "Hot and Sunny")
                         {
                             maxWillingToPay = rand.Next(5, 11);
@@ -144,8 +144,8 @@ namespace LemonadeStand
                 int possibleSugarCubes = (player.inventory.sugarCubes.Count / player.recipe.numberOfSugarCubes);
                 int possibleCups = (player.inventory.cups.Count / 8);
                 int amountOfPossiblePitchers = Math.Min(Math.Min(possibleSugarCubes,possibleCups),Math.Min(possiblelemons,possibleIceCubes));
-                pitchers = amountOfPossiblePitchers;
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
+                pitchers = amountOfPitchers;
                 if (amountOfPitchers > amountOfPossiblePitchers)
                 {
                     Console.WriteLine($"You do not have enough materials (Cups,Lemons,Sugar Cubes, etc..) to make that many pitchers.\nYou have Enough to make a total of {amountOfPossiblePitchers} Pitchers.\n");
@@ -194,21 +194,38 @@ namespace LemonadeStand
                 string answer = Store.AskToStore();
                 if (answer == "Y")
                 {
-                    Console.WriteLine("Great.");
+                    Console.WriteLine("Great.\n");
                     store.SellLemons(player);
                     store.SellCups(player);
                     store.SellIceCubes(player);
                     store.SellSugarCubes(player);
-                    break;
+                    if (player.recipe.numberOfLemons > player.inventory.lemons.Count || player.recipe.numberOfIceCubes > player.inventory.iceCubes.Count || player.recipe.numberOfSugarCubes > player.inventory.sugarCubes.Count || player.inventory.cups.Count < 8)
+                    {
+                        Console.WriteLine("You do not have enough materials to make a pitcher of lemonade.\n Please buy any necessary materials form the store.");
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Okay, Have a nice day.\n");
+                        break;
+                    }
                 }
                 if (answer == "N")
                 {
-                    Console.WriteLine("Okay, Have a nice day.\n");
-                    break;
+                    if (player.recipe.numberOfLemons > player.inventory.lemons.Count || player.recipe.numberOfIceCubes > player.inventory.iceCubes.Count || player.recipe.numberOfSugarCubes > player.inventory.sugarCubes.Count || player.inventory.cups.Count < 8)
+                    {
+                        Console.WriteLine("You do not have enough materials to make a pitcher of lemonade.\n Please vist the store.");
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Okay, Have a nice day.\n");
+                        break;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Invaild rsponse. Please try again.");
+                    Console.WriteLine("Invaild rsponse. Please try again.\n");
                     continue;
                 }
 
@@ -226,7 +243,7 @@ namespace LemonadeStand
 
                 if (player.recipe.numberOfLemons > player.inventory.lemons.Count || player.recipe.numberOfIceCubes > player.inventory.iceCubes.Count || player.recipe.numberOfSugarCubes > player.inventory.sugarCubes.Count)
                 {
-                    Console.WriteLine("You do not have enough ingredients for you to use this recipe. (Consider editing your recipe)");
+                    Console.WriteLine("You do not have enough ingredients for you to use this recipe. (Consider editing your recipe)\n");
                     continue;
                 }
                 else
@@ -253,11 +270,46 @@ namespace LemonadeStand
             }
         }
 
+        public int IfPlayerMakesNoPitchers(int pitchers)
+        {
+            bool loop = true;
+            while (loop)
+            {
+                if (pitchers == 0)
+                {
+                    Console.WriteLine("You did not make any pitchers.\n Do you want to make a pitcher (Y yes N no)\n");
+                    string response = Console.ReadLine();
+                    if (response == "Y")
+                    {
+                        pitchers = MakingPitchers(0);
+                        if(pitchers == 0)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (response == "N")
+                    {
+                        Console.WriteLine("Okay you will continue the day unable to make Lemonade.\n");
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+                return pitchers;
+        }
+
         public void StartDay()
         {
             CreateNewDay(1);
 
-            Console.WriteLine($"Day: {currentDay + 1}");
+            Console.WriteLine($"Day: {currentDay + 1}\n");
 
             days[currentDay].DaysPossibleWeather();
 
@@ -270,6 +322,8 @@ namespace LemonadeStand
             RecipeEditor();
 
             int pitchers = MakingPitchers(0);
+
+            pitchers = IfPlayerMakesNoPitchers(pitchers);
 
             player.recipe.ChangePricePerCup();
 
