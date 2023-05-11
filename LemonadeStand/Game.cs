@@ -336,7 +336,6 @@ namespace LemonadeStand
             DisplayProfitOrLoss();
 
             ++currentDay;
-
         }
 
 
@@ -346,12 +345,12 @@ namespace LemonadeStand
             UserInterface.DisplayIntroMessage();
             while (currentDay < 7)
             {
-                StartDay();
-                if (this.player.wallet.Money == 0)
+                if (this.player.wallet.Money <= 0)
                 {
                     Console.WriteLine("You Have gone Broke!");
                     break;
                 }
+                StartDay();
             }
             EndGamesProfitOrLoss();
 
