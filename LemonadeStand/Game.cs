@@ -31,6 +31,7 @@ namespace LemonadeStand
         {
             foreach (Customer customer in days[currentDay].customers)
             {
+                int lemonadeSold = 0;
                 do
                 {
                     Console.WriteLine("A customer is walking by.\n");
@@ -48,6 +49,7 @@ namespace LemonadeStand
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
+                                ++lemonadeSold;
                                 break;
                             }
                             else
@@ -66,6 +68,7 @@ namespace LemonadeStand
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
+                                ++lemonadeSold;
                                 break;
                             }
                             else
@@ -80,10 +83,11 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("The customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer purchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
+                                ++lemonadeSold;
                                 break;
                             }
                             else
@@ -102,7 +106,7 @@ namespace LemonadeStand
                 } while (numberOfCups > 0);
                 if (numberOfCups == 0)
                 {
-                    Console.WriteLine("You have sold out of Lemonade. You pack up your things for the day and leave.\n");
+                    Console.WriteLine($"You have sold out of Lemonade. You pack up your things for the day and leave.\nYou sold a total of {lemonadeSold}.");
                     break;
                 }
 
