@@ -256,7 +256,7 @@ namespace LemonadeStand
 
         public void CustomersOfTheDay()
         {
-            if (days[currentDay].weather.condition == "Hot and Sunny.")
+            if (days[currentDay].weather.condition == "Hot and Sunny")
             {
                 days[currentDay].CreateCustomers(rand.Next(30,35));
             }
