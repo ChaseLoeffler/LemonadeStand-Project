@@ -125,15 +125,15 @@ namespace LemonadeStand
         public void DisplayProfitOrLoss(double cupsSold)
         {
             double profitOrLoss = cupsSold *= player.recipe.pricePerCup;
-            Console.WriteLine($"Todays profit or loss is {profitOrLoss} dollars.\n");
+            Console.WriteLine($"Todays profit or loss is ${profitOrLoss}.\n");
             totalProfitOrLoss += profitOrLoss;
-            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss} dollars.\n"); 
+            Console.WriteLine($"Total profit or loss is ${totalProfitOrLoss}.\n"); 
         }
 
         public void EndGamesProfitOrLoss()
         {
             Console.WriteLine("The Game is Over!\n");
-            Console.WriteLine($"You finished the game with {player.wallet.Money} dollars in youre wallet.\nTotal profit or loss of the whole game was {totalProfitOrLoss} dollars.\n");
+            Console.WriteLine($"You finished the game with ${player.wallet.Money} in your wallet.\nTotal profit or loss of the whole game was ${totalProfitOrLoss}.\n");
         }
 
         public int MakingPitchers(int pitchers)
