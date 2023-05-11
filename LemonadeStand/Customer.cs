@@ -22,7 +22,16 @@ namespace LemonadeStand
         {
             if (conditon == "Hot and Sunny")
             {
-                return true;
+                int randomNum = (int)rand.NextInt64(1, 5);
+
+                if (randomNum == 1 || randomNum == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             if (conditon == "Warm and Cloudy")
             {

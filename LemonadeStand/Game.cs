@@ -27,11 +27,11 @@ namespace LemonadeStand
         }
         //Member Methods (CAN DO)
 
-        public void CustomersWalkingBy(double priceOfObject, int numberOfCups)
+        public double CustomersWalkingBy(double priceOfObject, int numberOfCups)
         {
+            double lemonadeSold = 0;
             foreach (Customer customer in days[currentDay].customers)
             {
-                int lemonadeSold = 0;
                 do
                 {
                     Console.WriteLine("A customer is walking by.\n");
@@ -106,11 +106,11 @@ namespace LemonadeStand
                 } while (numberOfCups > 0);
                 if (numberOfCups == 0)
                 {
-                    Console.WriteLine($"You have sold out of Lemonade. You pack up your things for the day and leave.\nYou sold a total of {lemonadeSold}.");
+                    Console.WriteLine($"You have sold out of Lemonade. You pack up your things for the day and leave.\n");
                     break;
                 }
-
             }
+                return lemonadeSold;
         }
 
         public void CreateNewDay(int numOfDays)
@@ -122,20 +122,18 @@ namespace LemonadeStand
             }
         }
 
-        public void DisplayProfitOrLoss()
+        public void DisplayProfitOrLoss(double cupsSold)
         {
-            double profitOrLoss = UserInterface.ProfitOrLossOfDay(player.wallet.Money);
+            double profitOrLoss = cupsSold *= player.recipe.pricePerCup;
             Console.WriteLine($"Todays profit or loss is {profitOrLoss} dollars.\n");
             totalProfitOrLoss += profitOrLoss;
-            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss} dollars.\n");
+            Console.WriteLine($"Total profit or loss is {totalProfitOrLoss} dollars.\n"); 
         }
 
         public void EndGamesProfitOrLoss()
         {
             Console.WriteLine("The Game is Over!\n");
-            double profitOrLoss = UserInterface.ProfitOrLossOfDay(player.wallet.Money);
-            totalProfitOrLoss += profitOrLoss;
-            Console.WriteLine($"Total profit or loss of the whole game was {totalProfitOrLoss} dollars.\n");
+            Console.WriteLine($"You finished the game with {player.wallet.Money} dollars in youre wallet.\nTotal profit or loss of the whole game was {totalProfitOrLoss} dollars.\n");
         }
 
         public int MakingPitchers(int pitchers)
@@ -312,7 +310,7 @@ namespace LemonadeStand
         public void StartDay()
         {
             CreateNewDay(1);
-
+            totalProfitOrLoss -= player.wallet.Money;
             Console.WriteLine($"Day: {currentDay + 1}\n");
 
             days[currentDay].DaysPossibleWeather();
@@ -331,13 +329,15 @@ namespace LemonadeStand
 
             player.recipe.ChangePricePerCup();
 
+            days[currentDay].DaysActualWeather();
+            totalProfitOrLoss += player.wallet.Money;
             CustomersOfTheDay();
 
-            CustomersWalkingBy(player.recipe.pricePerCup,pitchers*=8);
+            double cupsSold = CustomersWalkingBy(player.recipe.pricePerCup,pitchers*=8);
 
-            Console.WriteLine("The Day is Finsihed!\n");
+            Console.WriteLine($"The Day is Finsihed!\nYou sold a total of {cupsSold} cups of Lemonade.\n");
 
-            DisplayProfitOrLoss();
+            DisplayProfitOrLoss(cupsSold);
 
             ++currentDay;
         }
