@@ -86,7 +86,7 @@ namespace LemonadeStand
 
         public static string AskToStore()
         {
-            Console.WriteLine("Would you like to purchase any items today?(Remember you need at least 8 cups to make one pitcher of Lemonade.)\n (Capital Y for yes, Capital N for no)");
+            Console.WriteLine("Would you like to purchase any items today?(Remember you'll need at least 8 cups, 1 pitcher pours 8 cups of Lemonade.)\n(Capital Y for yes, Capital N for no)");
             string userInput = Console.ReadLine();
             return userInput;
         }

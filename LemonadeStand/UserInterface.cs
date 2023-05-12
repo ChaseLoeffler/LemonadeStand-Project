@@ -45,7 +45,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("Hello, Welcome to the Lemonade stand Game.\nYour goal is to make as much money selling lemonade in a week (7 in game days).\nEach day you will be told the days weather forecast.\n" +
                 "Keep noted of what the weather is likely to be as customers will be more likely to buy lemonade on hot sunny days and\nless likely on cold cloudy days. Adjust the price accordingly.\nAs well each day you will be able to buy the necessary " +
-                "items need to make your lemonade. Spend your money wisely.\nThe game ends when you are out of funds or finished the week. Good luck!\n");
+                "items needed to make your lemonade. Spend your money wisely.\nThe game ends when you are out of funds or finished the week. Good luck!\n");
         }
     }
 }

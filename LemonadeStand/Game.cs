@@ -45,7 +45,7 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("The customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer purchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
@@ -64,7 +64,7 @@ namespace LemonadeStand
                             bool okayWithPaying = customer.ChecksPrice(priceOfObject, maxWillingToPay);
                             if (okayWithPaying == true)
                             {
-                                Console.WriteLine("The customer perchased Lemonade.\n");
+                                Console.WriteLine("The customer purchased Lemonade.\n");
                                 customer.BuysLemonade(priceOfObject);
                                 player.wallet.AcceptMoney(priceOfObject);
                                 --numberOfCups;
