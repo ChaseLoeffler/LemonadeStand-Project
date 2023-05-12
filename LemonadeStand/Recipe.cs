@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,6 +69,16 @@ namespace LemonadeStand
                     continue;
                 }
 
+            }
+            ChecksRecipe();
+        }
+
+        public void ChecksRecipe()
+        {
+            if (numberOfIceCubes <= 0 || numberOfLemons <= 0 || numberOfSugarCubes <= 0)
+            {
+                Console.WriteLine("You Have to use at least 1 of each ingredient in your Lemonade.\n");
+                ChangeRecipe();
             }
         }
 
