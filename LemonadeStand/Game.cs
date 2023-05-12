@@ -180,11 +180,14 @@ namespace LemonadeStand
                 {
                     player.inventory.sugarCubes.RemoveAt(0);
                 }
-                for (int i = 0; i < 8; i++)
-                {
-                    player.inventory.cups.RemoveAt(0);
-                }
                 --pitchersMade;
+            }
+        }
+        public void SubtractCupsUsed(double cupsUsed)
+        {
+            for (int i = 0; i < cupsUsed; i++)
+            {
+                player.inventory.cups.RemoveAt(0);
             }
         }
 
@@ -334,6 +337,8 @@ namespace LemonadeStand
             CustomersOfTheDay();
 
             double cupsSold = CustomersWalkingBy(player.recipe.pricePerCup,pitchers*=8);
+
+            SubtractCupsUsed(cupsSold);
 
             Console.WriteLine($"The Day is Finsihed!\nYou sold a total of {cupsSold} cups of Lemonade.\n");
 
