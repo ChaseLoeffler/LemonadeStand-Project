@@ -10,13 +10,11 @@ namespace LemonadeStand
     {   // Member Variables (HAS A)
         public Weather weather;
         public List<Customer> customers;
-        public Random rand;
         //Constructor
         public Day()
         {
             weather = new Weather();
             customers = new List<Customer>();
-            rand = new Random();
         }
         //Member Methods (CAN DO)
         public void DaysPossibleWeather()
