@@ -18,7 +18,7 @@ namespace LemonadeStand
         public Weather()
         {
             weatherConditions = new List<string> {"Sunny","Cloudy","Rainy"};
-            forcast = new List<string> {"Hot and Sunny","Warm and Cloudy","Cold and Rainy"};
+            forcast = new List<string> {"Hot and Sunny","Warm and Cloudy","Cold and Rainy","Hot and Sunny","Warm and Cloudy"};
             rand = new Random();
             condition = "";
             temperature = 0;
@@ -28,7 +28,7 @@ namespace LemonadeStand
 
         public void PredictWeather()
         {
-            condition = forcast[rand.Next(3)];
+            condition = forcast[rand.Next(5)];
             Console.WriteLine($"The weather today looks like its going to be {condition}\n");
         }
 
